@@ -2,7 +2,7 @@ import React, { useCallback, useRef } from 'react'
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc'
 import Thumbnail from './Thumbnail'
 
-const Row = ({ title, movies }: any) => {
+const Row = ({ title = '', movies = [] }: any) => {
   const rowRef = useRef<HTMLDivElement | null>(null)
   const handleSelect = useCallback((direction: string) => {
     console.log('hello')
