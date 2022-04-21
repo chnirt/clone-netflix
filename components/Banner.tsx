@@ -18,7 +18,7 @@ const Banner = ({ data = [] }) => {
   return (
     <div className="flex items-center px-12 md:h-[25vh] lg:h-[50vh] xl:h-[75vh]">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-full">
-        {(banner?.poster_path || banner?.backdrop_path) && (
+        {
           <Image
             className="object-cover"
             src={`${image_base_url}/${
@@ -27,7 +27,7 @@ const Banner = ({ data = [] }) => {
             layout="fill"
             priority
           />
-        )}
+        }
       </div>
       <div className="flex max-w-xs flex-col py-10 md:max-w-lg lg:max-w-2xl">
         <h1 className="banner-title">
