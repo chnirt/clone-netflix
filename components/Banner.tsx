@@ -6,7 +6,7 @@ import { FaPlay } from 'react-icons/fa'
 const image_base_url = 'https://image.tmdb.org/t/p/original'
 
 const Banner = ({ data = [] }) => {
-  const [banner, setBanner] = useState({})
+  const [banner, setBanner] = useState<any>(null)
 
   useEffect(() => {
     const fetchBanner = () => {
