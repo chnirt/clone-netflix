@@ -6,7 +6,7 @@ import { FaPlay } from 'react-icons/fa'
 const image_base_url = 'https://image.tmdb.org/t/p/original'
 
 const Banner = ({ data = [] }) => {
-  const [banner, setBanner] = useState(null)
+  const [banner, setBanner] = useState({})
 
   useEffect(() => {
     const fetchBanner = () => {
@@ -22,7 +22,7 @@ const Banner = ({ data = [] }) => {
           <Image
             className="object-cover"
             src={`${image_base_url}/${
-              banner?.poster_path || banner?.backdrop_path
+              banner.poster_path || banner.backdrop_path
             }`}
             layout="fill"
             priority
