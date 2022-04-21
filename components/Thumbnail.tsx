@@ -9,7 +9,9 @@ const Thumbnail = ({ movie }: any) => {
       {
         <Image
           className="rounded-sm object-cover"
-          src={`${image_base_url}/${movie.poster_path || movie.backdrop_path}`}
+          src={`${image_base_url}/${
+            movie?.poster_path || movie?.backdrop_path
+          }`}
           layout="fill"
           priority
         />

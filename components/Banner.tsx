@@ -22,7 +22,7 @@ const Banner = ({ data = [] }) => {
           <Image
             className="object-cover"
             src={`${image_base_url}/${
-              banner.poster_path || banner.backdrop_path
+              banner?.poster_path || banner?.backdrop_path
             }`}
             layout="fill"
             priority
