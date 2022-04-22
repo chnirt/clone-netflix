@@ -26,8 +26,7 @@ const Header = () => {
     <header
       className={`bg-gradient-to-b from-[#000000]/70 to-[#00000000] ${
         isScrolled && 'bg-[#141414]'
-      }
-      `}
+      }`}
     >
       {/* <div className="flex h-16 items-center justify-between px-12"> */}
       <div className="flex items-center">

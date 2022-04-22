@@ -16,7 +16,7 @@ const Banner = ({ data = [] }) => {
   }, [data])
 
   return (
-    <div className="flex items-center px-12 md:h-[25vh] lg:h-[50vh] xl:h-[75vh]">
+    <div className="banner">
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-full">
         {
           <Image
@@ -29,7 +29,7 @@ const Banner = ({ data = [] }) => {
           />
         }
       </div>
-      <div className="flex max-w-xs flex-col py-10 md:max-w-lg lg:max-w-2xl">
+      <div className="flex max-w-xs flex-col justify-center md:max-w-lg lg:max-w-xl xl:max-w-2xl">
         <h1 className="banner-title">
           {banner?.title || banner?.original_title}
         </h1>
