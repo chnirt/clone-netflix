@@ -8,8 +8,8 @@ import {
   adventureUrl,
   animationUrl,
   crimeUrl,
+  netflixUrl,
   nowPlayingUrl,
-  popularUrl,
   topRatedUrl,
   trendingUrl,
   upcomingUrl,
@@ -33,8 +33,8 @@ const Home: NextPage = ({
         <link rel="icon" href="/netflix.ico" />
       </Head>
 
-      <Header />
       <main>
+        <Header />
         <Banner data={nowPlayingMovies} />
         <section className="my-9 space-y-9">
           <Row title={'Popular on Netflix'} movies={popularMovies} />
@@ -83,7 +83,7 @@ export async function getServerSideProps() {
     crimeMoviesResponse,
   ] = await Promise.all([
     (await fetch(nowPlayingUrl)).json(),
-    (await fetch(popularUrl)).json(),
+    (await fetch(netflixUrl)).json(),
     (await fetch(trendingUrl)).json(),
     (await fetch(upcomingUrl)).json(),
     (await fetch(topRatedUrl)).json(),

@@ -21,10 +21,7 @@ const Row = ({ title = '', movies = [] }: any) => {
       <h1 className="movie-row-title">{title}</h1>
 
       <div className="group relative flex">
-        <div
-          ref={rowRef}
-          className="flex w-full items-center space-x-1 overflow-y-hidden overflow-x-scroll px-4 scrollbar-hide"
-        >
+        <div ref={rowRef} className="movie-row-thumbnail">
           {movies.length &&
             movies.map((movie: any, mi: any) => (
               <Thumbnail key={`thumbnail-${mi}`} movie={movie} />
@@ -32,14 +29,14 @@ const Row = ({ title = '', movies = [] }: any) => {
         </div>
 
         <button
-          className="absolute left-0 flex h-full w-12 items-center opacity-0 transition duration-200 group-hover:bg-[#14141450] group-hover:opacity-100"
+          className="carousel-control absolute left-0 flex h-full items-center opacity-0 transition duration-200 group-hover:bg-[#14141450] group-hover:opacity-100"
           onClick={handleLeft}
         >
           <VscChevronLeft className="transition hover:scale-125" size={46} />
         </button>
 
         <button
-          className="absolute right-0 flex h-full w-12 items-center opacity-0 transition duration-200 group-hover:bg-[#14141450] group-hover:opacity-100"
+          className="carousel-control absolute right-0 flex h-full w-12 items-center opacity-0 transition duration-200 group-hover:bg-[#14141450] group-hover:opacity-100"
           onClick={handleRight}
         >
           <VscChevronRight className="transition hover:scale-125" size={46} />

@@ -8,13 +8,19 @@
     @apply bg-[#141414] text-white;
   }
   header {
-    @apply fixed z-10 flex h-16 w-full items-center justify-between px-4 transition-all;
+    @apply padding-x fixed z-10 flex h-[68px] w-full transition-all;
   }
 }
 
 @layer components {
+  .padding-x {
+    @apply px-[16px] sm:px-[16px] md:px-[32px] lg:px-[60px];
+  }
+  .width-x {
+    @apply w-[60px];
+  }
   .banner {
-    @apply flex h-[50vh] items-center px-4 md:h-[65vh] lg:h-[80vh];
+    @apply padding-x flex h-[50vh] items-center md:h-[65vh] lg:h-[100vh];
   }
   .header-link {
     @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[0.4s] hover:text-[#b3b3b3];
@@ -26,9 +32,15 @@
     @apply my-3 text-xl font-bold text-shadow-lg md:text-2xl lg:text-3xl xl:text-4xl;
   }
   .banner-overview {
-    @apply text-lg font-normal text-shadow-sm md:text-xl lg:text-2xl xl:text-3xl;
+    @apply text-lg font-normal text-shadow-md md:text-xl lg:text-2xl xl:text-3xl;
   }
   .movie-row-title {
-    @apply mb-2 cursor-pointer px-4 text-base font-bold text-[#e5e5e5] duration-200 hover:text-white;
+    @apply padding-x mb-2 cursor-pointer text-base font-bold text-[#e5e5e5] duration-200 hover:text-white;
+  }
+  .movie-row-thumbnail {
+    @apply padding-x flex w-full items-center space-x-1 overflow-y-hidden overflow-x-scroll scrollbar-hide;
+  }
+  .carousel-control {
+    @apply width-x;
   }
 }
