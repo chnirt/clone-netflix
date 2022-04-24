@@ -1,15 +1,22 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '../context/useAuth'
 import logoPic from '../assets/logo.svg'
 import backgroundPic from '../assets/background.jpeg'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const Login = () => {
   const { signIn } = useAuth()
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch('/')
+  }, [])
 
   const handleLogin = () => {
     const userInput = {
@@ -110,73 +117,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        {/* <div className="pb-[95px]">
-          <div className="mx-auto mt-0 mb-[15px] max-w-[978px] px-[32px] pt-[20px] pb-[60px]">
-            <div className="my-0 mx-auto max-w-[440px] border-2 text-left">
-              <div className="mt-[20px]">
-                <h1 className="mb-[13px] text-[32px] font-bold text-[#333333]">
-                  Sign In
-                </h1>
-              </div>
-
-              <div>
-                <div className="relative mt-[16px] mb-[20px]">
-                  <input
-                    className="h-[60px] w-full rounded-[2px] border-[1px] border-[#8c8c8c] px-[10px] pt-[10px] text-base text-black"
-                    type={'text'}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <label className="absolute left-[10px] top-[6px] text-[13px] font-bold text-[#8c8c8c]">
-                    Email
-                  </label>
-                </div>
-                <div className="relative mt-[16px] mb-[20px]">
-                  <input
-                    className="h-[60px] w-full rounded-[2px] border-[1px] border-[#8c8c8c] px-[10px] pt-[10px] text-base text-black"
-                    type={'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <label className="absolute left-[10px] top-[6px] text-[13px] font-bold text-[#8c8c8c]">
-                    Password
-                  </label>
-                </div>
-              </div>
-
-              <div className="mt-[24px]">
-                <button
-                  onClick={handleLogin}
-                  className="min-h-[64px] w-full min-w-[110px] rounded bg-[#e50914] py-3 px-[25px] hover:bg-[#f6121d]"
-                >
-                  <span className="text-[24px] font-[500]">Next</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </main>
-      {/* login
-      <br />
-      <input
-        className="text-black"
-        type={'text'}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br />
-      <input
-        className="text-black"
-        type={'password'}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <button onClick={handleLogin}>Login</button>
-      <br />
-      <Link href={'/signup'}>
-        <span>SignUp</span>
-      </Link> */}
     </div>
   )
 }

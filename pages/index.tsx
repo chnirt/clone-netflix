@@ -47,7 +47,6 @@ const Home: NextPage = ({
           <Row title={'Crime'} movies={crimeMovies} />
         </section>
       </main>
-      {/* Modal */}
 
       {/* <footer className="flex h-24 w-full items-center justify-center border-t">
         <a

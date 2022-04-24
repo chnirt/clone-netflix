@@ -6,7 +6,6 @@ import {
   FunctionComponent,
   useMemo,
 } from 'react'
-import { useRouter } from 'next/router'
 import {
   onAuthStateChanged,
   User,
@@ -47,8 +46,8 @@ type AuthProviderProps = {
 const AuthProvider: FunctionComponent<AuthProviderProps> = ({
   children,
 }: AuthProviderProps) => {
-  const router = useRouter()
   const { show, hide } = useLoading()
+  const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<User | ISignInUser | null>(null)
 
   useEffect(() => {
@@ -60,21 +59,22 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           const uid = user.uid
-          setUser(user)
-          router.push('/')
           // ...
         } else {
           // User is signed out
           // ...
-          router.push('/login')
         }
+        setUser(user)
+        setLoading(false)
         hide()
       },
       (error) => {
         hide()
+        setLoading(false)
       },
       () => {
         hide()
+        setLoading(false)
       }
     )
     return unsubscribe
@@ -136,7 +136,11 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({
     [user]
   )
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={value}>
+      {loading ? null : children}
+    </AuthContext.Provider>
+  )
 }
 
 export const useAuth = () => useContext(AuthContext)
