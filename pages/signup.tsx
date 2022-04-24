@@ -21,8 +21,8 @@ const SignUp = () => {
         <title>Netflix</title>
         <link rel="icon" href="/netflix.ico" />
       </Head>
-      <main className="bg-white">
-        <div className="padding-x flex h-[91px] justify-between border-b-[1px] border-b-[#e6e6e6]">
+      <main className="min-h-screen bg-white">
+        <div className="padding-x flex h-[90px] justify-between border-b-[1px] border-b-[#e6e6e6]">
           <Link href={'/'}>
             <a className="flex cursor-pointer items-center">
               <Image
@@ -62,7 +62,7 @@ const SignUp = () => {
                 </p>
                 <div className="relative mt-[16px] mb-[20px]">
                   <input
-                    className="h-[60px] w-full rounded-[2px] border-[1px] border-[#8c8c8c] px-[10px] pt-[10px] text-base text-black"
+                    className="h-[60px] w-full rounded-[2px] border-[1px] border-[#8c8c8c] px-[10px] pt-[10px] text-base text-black outline-none"
                     type={'text'}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -73,7 +73,7 @@ const SignUp = () => {
                 </div>
                 <div className="relative mt-[16px] mb-[20px]">
                   <input
-                    className="h-[60px] w-full rounded-[2px] border-[1px] border-[#8c8c8c] px-[10px] pt-[10px] text-base text-black"
+                    className="h-[60px] w-full rounded-[2px] border-[1px] border-[#8c8c8c] px-[10px] pt-[10px] text-base text-black outline-none"
                     type={'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
