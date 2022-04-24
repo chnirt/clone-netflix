@@ -16,32 +16,32 @@ const Banner = ({ data = [] }) => {
   }, [data])
 
   return (
-    <div
-      className="banner bg-cover bg-center"
-      style={{
-        backgroundImage:
+    <div className="banner">
+      <img
+        className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw] object-cover"
+        src={
           banner?.poster_path || banner?.backdrop_path
-            ? `url(${image_base_url}/${
+            ? `${image_base_url}/${
                 banner?.poster_path || banner?.backdrop_path
-              })`
-            : 'none',
-      }}
-    >
-      <div className="flex max-w-xs flex-col justify-center md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+              }`
+            : 'none'
+        }
+      />
+      <div className="flex h-[80vh] max-w-xs flex-col justify-center md:max-w-lg lg:max-w-xl xl:max-w-2xl">
         <h1 className="banner-title line-clamp-2">
           {banner?.title || banner?.original_title}
         </h1>
         <p className="banner-overview line-clamp-4">{banner?.overview}</p>
         <div className="mt-4 flex">
-          <button className="mr-3 mb-3 flex items-center rounded bg-white py-2 pl-5 pr-6 hover:bg-white/75">
+          <button className="banner-button bg-white hover:bg-white/75">
             <FaPlay className="text-black" size={21} />
             <div className="w-4" />
-            <span className="text-black">Play</span>
+            <span className="banner-button-text text-black">Play</span>
           </button>
-          <button className="mr-3 mb-3 flex items-center rounded bg-[#6d6d6e]/40 py-2 pl-5 pr-6 hover:bg-[#6d6d6e]/70">
+          <button className="banner-button bg-[#6d6d6e]/40 hover:bg-[#6d6d6e]/70">
             <AiOutlineInfoCircle size={25} />
             <div className="w-4" />
-            <span>More Info</span>
+            <span className="banner-button-text">More Info</span>
           </button>
         </div>
       </div>

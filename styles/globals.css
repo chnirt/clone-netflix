@@ -20,7 +20,7 @@
     @apply w-[60px];
   }
   .banner {
-    @apply padding-x flex h-[50vh] items-center md:h-[65vh] lg:h-[100vh];
+    @apply padding-x flex items-center bg-gradient-to-b from-transparent to-[#141414];
   }
   .header-link {
     @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[0.4s] hover:text-[#b3b3b3];
@@ -33,6 +33,12 @@
   }
   .banner-overview {
     @apply text-lg font-normal text-shadow-md md:text-xl lg:text-2xl xl:text-3xl;
+  }
+  .banner-button {
+    @apply mr-3 mb-3 flex h-[50px] items-center rounded py-2 pl-5 pr-6;
+  }
+  .banner-button-text {
+    @apply text-xl;
   }
   .movie-row-title {
     @apply padding-x mb-2 cursor-pointer text-base font-bold text-[#e5e5e5] duration-200 hover:text-white;

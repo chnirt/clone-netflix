@@ -48,7 +48,7 @@ const Header = () => {
 
   return (
     <header
-      className={`bg-gradient-to-b from-[#00000095] to-[#00000000] transition-all duration-500 ease-in ${
+      className={`transition-all duration-500 ease-in ${
         isScrolled && 'bg-black'
       }`}
     >
@@ -83,7 +83,7 @@ const Header = () => {
         </ul>
       </div>
 
-      <div className="absolute right-[60px] flex h-full flex-grow-[1] items-center justify-end">
+      <div className="absolute right-[16px] flex h-full flex-grow-[1] items-center justify-end sm:right-[16px] md:right-[32px] lg:right-[60px]">
         <div className="flex items-center">
           <ImSearch className="mr-[20px] hidden md:flex" size={22} />
           <Link href="/">
