@@ -1,4 +1,6 @@
-const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY || ''
+import { NEXT_PUBLIC_TMDB_API_KEY } from '../environments'
+
+const TMDB_API_KEY = NEXT_PUBLIC_TMDB_API_KEY
 const BASE_API = 'https://api.themoviedb.org/3'
 const API_KEY = `api_key=${TMDB_API_KEY}`
 const LANGUAGE = `language=en-US`

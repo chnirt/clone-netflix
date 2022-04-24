@@ -38,10 +38,10 @@
     @apply mr-3 mb-3 flex h-[50px] items-center rounded py-2 pl-5 pr-6;
   }
   .banner-button-text {
-    @apply text-xl;
+    @apply text-xl font-bold;
   }
   .movie-row-title {
-    @apply padding-x mb-2 cursor-pointer text-base font-bold text-[#e5e5e5] duration-200 hover:text-white;
+    @apply padding-x mb-2 cursor-pointer text-base font-bold text-[#e5e5e5] duration-200 hover:text-white sm:text-lg md:text-xl lg:text-2xl;
   }
   .movie-row-thumbnail {
     @apply padding-x flex w-full items-center space-x-1 overflow-y-hidden overflow-x-scroll scrollbar-hide;

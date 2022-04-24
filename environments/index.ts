@@ -1,0 +1,19 @@
+export const NEXT_PUBLIC_TMDB_API_KEY =
+  process.env.NEXT_PUBLIC_TMDB_API_KEY || ''
+
+const NEXT_PUBLIC_API_KEY = process.env.NEXT_PUBLIC_API_KEY || ''
+const NEXT_PUBLIC_AUTH_DOMAIN = process.env.NEXT_PUBLIC_AUTH_DOMAIN || ''
+const NEXT_PUBLIC_PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID || ''
+const NEXT_PUBLIC_STORAGE_BUCKET = process.env.NEXT_PUBLIC_STORAGE_BUCKET || ''
+const NEXT_PUBLIC_MESSAGING_SENDER_ID =
+  process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID || ''
+const NEXT_PUBLIC_APP_ID = process.env.NEXT_PUBLIC_APP_ID || ''
+
+export const firebaseConfig = {
+  apiKey: NEXT_PUBLIC_API_KEY,
+  authDomain: NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: NEXT_PUBLIC_APP_ID,
+}

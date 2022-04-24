@@ -6,6 +6,7 @@ import { ImSearch } from 'react-icons/im'
 import { FaBell } from 'react-icons/fa'
 import Link from 'next/link'
 import { AiFillCaretDown } from 'react-icons/ai'
+import { useAuth } from '../context/useAuth'
 
 const routes = [
   {
@@ -31,6 +32,7 @@ const routes = [
 ]
 
 const Header = () => {
+  const { signOut } = useAuth()
   const [isScrolled, setIsScrolled] = useState(false)
   const [currentRoute, setCurrentRoute] = useState('Home')
 
@@ -91,7 +93,7 @@ const Header = () => {
           </Link>
           <FaBell className="mr-[20px]" size={25} />
           <Link href="/">
-            <div className="flex cursor-pointer items-center">
+            <div className="flex cursor-pointer items-center" onClick={signOut}>
               <Image
                 className="rounded object-contain"
                 src={avatarPlaceholderPic}
