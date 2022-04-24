@@ -4,6 +4,7 @@ import {
   useEffect,
   useState,
   FunctionComponent,
+  useMemo,
 } from 'react'
 import { useRouter } from 'next/router'
 import {
@@ -14,6 +15,7 @@ import {
   signOut,
 } from 'firebase/auth'
 import { auth } from '../firebase'
+import { useLoading } from './useLoading'
 
 interface ISignInUser {
   email: string
@@ -46,12 +48,14 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({
   children,
 }: AuthProviderProps) => {
   const router = useRouter()
+  const { show, hide } = useLoading()
   const [user, setUser] = useState<User | ISignInUser | null>(null)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
       auth,
       (user: User | null) => {
+        show()
         if (user) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
@@ -64,63 +68,73 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({
           // ...
           router.push('/login')
         }
-        // hide()
+        hide()
       },
       (error) => {
-        // hide()
+        hide()
       },
       () => {
-        // hide()
+        hide()
       }
     )
     return unsubscribe
   }, [])
 
-  const value = {
-    user,
-    isAuth: !!user,
-    signIn: async (userInput: ISignInUser) => {
-      try {
-        const { email, password } = userInput
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        )
-        const user = userCredential.user
-        setUser(user)
-      } catch (error) {
-        console.log(error)
-      } finally {
-      }
-    },
-    signUp: async (userInput: ISignInUser) => {
-      try {
-        const { email, password } = userInput
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        )
-        const user = userCredential.user
-      } catch (error: any) {
-        // const errorCode = error.code
-        // const errorMessage = error.message
-        console.log(error)
-      } finally {
-      }
-    },
-    signOut: async () => {
-      try {
-        const result = await signOut(auth)
-        // Sign-out successful.
-        setUser(null)
-      } catch (error) {
-        console.log(error)
-      } finally {
-      }
-    },
-  }
+  const value = useMemo(
+    () => ({
+      user,
+      isAuth: !!user,
+      signIn: async (userInput: ISignInUser) => {
+        show()
+        try {
+          const { email, password } = userInput
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          )
+          const user = userCredential.user
+          setUser(user)
+        } catch (error) {
+          console.log(error)
+        } finally {
+          hide()
+        }
+      },
+      signUp: async (userInput: ISignInUser) => {
+        show()
+        try {
+          const { email, password } = userInput
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          )
+          const user = userCredential.user
+          setUser(user)
+        } catch (error) {
+          // const errorCode = error.code
+          // const errorMessage = error.message
+          console.log(error)
+        } finally {
+          hide()
+        }
+      },
+      signOut: async () => {
+        show()
+        try {
+          const result = await signOut(auth)
+          // Sign-out successful.
+          setUser(null)
+        } catch (error) {
+          console.log(error)
+        } finally {
+          hide()
+        }
+      },
+    }),
+    [user]
+  )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

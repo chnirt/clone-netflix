@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import AuthProvider, { useAuth } from '../context/useAuth'
 import { useRouter } from 'next/router'
 import { useEffect, useLayoutEffect } from 'react'
+import LoadingProvider from '../context/useLoading'
 
 // const authPathNameArray = ['/']
 
@@ -33,18 +34,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   // const isAuthRoute = authPathNameArray.includes(router.pathname)
   return (
-    <AuthProvider>
-      <Component {...pageProps} />
-      {/* {isAuthRoute ? (
+    <LoadingProvider>
+      <AuthProvider>
+        <Component {...pageProps} />
+        {/* {isAuthRoute ? (
         <PrivateRoute>
-          <Component {...pageProps} />
+        <Component {...pageProps} />
         </PrivateRoute>
-      ) : (
-        <PublicRoute>
+        ) : (
+          <PublicRoute>
           <Component {...pageProps} />
-        </PublicRoute>
-      )} */}
-    </AuthProvider>
+          </PublicRoute>
+        )} */}
+      </AuthProvider>
+    </LoadingProvider>
   )
 }
 

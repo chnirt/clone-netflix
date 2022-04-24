@@ -16,6 +16,7 @@ const Login = () => {
       email,
       password,
     }
+    if (email.length === 0 || password.length === 0) return
     signIn(userInput)
   }
 
