@@ -31,7 +31,7 @@ const routes = [
   },
 ]
 
-const Header = () => {
+const Navbar = () => {
   const { signOut } = useAuth()
   const [isScrolled, setIsScrolled] = useState(false)
   const [currentRoute, setCurrentRoute] = useState('Home')
@@ -49,20 +49,24 @@ const Header = () => {
   }, [])
 
   return (
-    <header
-      className={`transition-all duration-500 ease-in ${
-        isScrolled && 'bg-black'
+    <div
+      className={`nav-bar transition-all duration-500 ease-in ${
+        isScrolled && 'fixed bg-black'
       }`}
     >
       <div className="flex">
         <div className="mr-[25px] flex items-center">
-          <Image
-            className="cursor-pointer object-contain"
-            src={logoPic}
-            alt="Logo"
-            width={92.5}
-            height={30}
-          />
+          <Link href={'/'}>
+            <a>
+              <Image
+                className="cursor-pointer object-contain"
+                src={logoPic}
+                alt="Logo"
+                width={92.5}
+                height={30}
+              />
+            </a>
+          </Link>
         </div>
         <ul className="flex items-center">
           <li className="header-link ml-4 flex items-center md:hidden">
@@ -106,8 +110,8 @@ const Header = () => {
           </Link>
         </div>
       </div>
-    </header>
+    </div>
   )
 }
 
-export default Header
+export default Navbar

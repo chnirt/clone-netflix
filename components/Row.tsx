@@ -17,7 +17,7 @@ const Row = ({ title = '', movies = [] }: any) => {
   const handleLeft = useCallback(() => handleSelect('left'), [])
   const handleRight = useCallback(() => handleSelect('right'), [])
   return (
-    <div>
+    <div className="relative z-[1] my-[3vw]">
       <h1 className="movie-row-title">{title}</h1>
 
       <div className="group relative flex">

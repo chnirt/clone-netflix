@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { FaPlay } from 'react-icons/fa'
+import { videoUrl } from '../utils/request'
+import ReactPlayer from 'react-player'
 
 const image_base_url = 'https://image.tmdb.org/t/p/original'
 
 const Banner = ({ data = [] }) => {
   const [banner, setBanner] = useState<any>(null)
+  const [movie, setMovie] = useState<any>(null)
 
   useEffect(() => {
     const fetchBanner = () => {
@@ -14,18 +17,68 @@ const Banner = ({ data = [] }) => {
     fetchBanner()
   }, [data])
 
+  useEffect(() => {
+    const fetchVideo = async (videoId: string) => {
+      try {
+        const movieResponse = await (await fetch(videoUrl(videoId))).json()
+        const movies = movieResponse.results
+        setMovie(movies[Math.floor(Math.random() * movies.length - 1)])
+      } catch (error) {
+      } finally {
+      }
+    }
+    if (!banner) return
+    fetchVideo(banner.id)
+  }, [banner])
+
+  const config = {
+    attributes: {
+      disablePictureInPicture: true,
+      controlsList: 'nodownload',
+    },
+    youtube: { playerVars: { disablekb: 1 } },
+  }
+
   return (
     <div className="banner">
-      <img
-        className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw] object-cover"
-        src={
-          banner?.poster_path || banner?.backdrop_path
-            ? `${image_base_url}/${
-                banner?.poster_path || banner?.backdrop_path
-              }`
-            : 'none'
-        }
-      />
+      {/* {
+        <img
+          className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw] object-cover"
+          src={
+            banner?.poster_path || banner?.backdrop_path
+              ? `${image_base_url}/${
+                  banner?.poster_path || banner?.backdrop_path
+                }`
+              : 'none'
+          }
+        />
+      } */}
+      {movie ? (
+        <div className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw]">
+          <ReactPlayer
+            className="absolute top-0 left-0 object-cover"
+            url={`https://www.youtube.com/watch?v=${movie.key}`}
+            config={config}
+            playing={true}
+            width="100%"
+            height="100%"
+            controls={false}
+            onContextMenu={(e: any) => e.preventDefault()}
+          />
+        </div>
+      ) : (
+        <img
+          className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw] object-cover"
+          src={
+            banner?.poster_path || banner?.backdrop_path
+              ? `${image_base_url}/${
+                  banner?.poster_path || banner?.backdrop_path
+                }`
+              : 'none'
+          }
+        />
+      )}
+
       <div className="flex h-[80vh] max-w-xs flex-col justify-center md:max-w-lg lg:max-w-xl xl:max-w-2xl">
         <h1 className="banner-title line-clamp-2">
           {banner?.title || banner?.original_title}

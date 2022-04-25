@@ -7,12 +7,12 @@
     /* @apply bg-[#141414] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-red-600; */
     @apply bg-[#141414] text-white;
   }
-  header {
-    @apply padding-x fixed z-10 flex h-[68px] w-full transition-all;
-  }
 }
 
 @layer components {
+  .nav-bar {
+    @apply padding-x relative z-10 flex h-[68px] w-full transition-all;
+  }
   .padding-x {
     @apply px-[16px] sm:px-[16px] md:px-[32px] lg:px-[60px];
   }
@@ -23,7 +23,7 @@
     @apply padding-x flex items-center bg-gradient-to-b from-transparent to-[#141414];
   }
   .header-link {
-    @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[0.4s] hover:text-[#b3b3b3];
+    @apply cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[0.4s] text-shadow-sm hover:text-[#b3b3b3];
   }
   .current-header-link {
     @apply font-bold;
