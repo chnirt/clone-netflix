@@ -102,14 +102,14 @@ const Home: NextPage = () => {
               </div>
             </div> */}
 
-            {/* <Row title={'Popular on Netflix'} movies={data.popularMovies} />
+            <Row title={'Popular on Netflix'} movies={data.popularMovies} />
             <Row title={'Trending Now'} movies={data.trendingMovies} />
             <Row title={'Upcoming'} movies={data.upcomingMovies} />
             <Row title={'Top Rated'} movies={data.topRatedMovies} />
             <Row title={'Action'} movies={data.actionMovies} />
             <Row title={'Adventure'} movies={data.adventureMovies} />
             <Row title={'Animation'} movies={data.animationMovies} />
-            <Row title={'Crime'} movies={data.crimeMovies} /> */}
+            <Row title={'Crime'} movies={data.crimeMovies} />
           </div>
         </section>
       </main>
