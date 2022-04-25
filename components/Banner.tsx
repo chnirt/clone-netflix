@@ -53,7 +53,7 @@ const Banner = ({ data = [] }) => {
           }
         />
       } */}
-      {movie ? (
+      {movie && (
         <div className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw]">
           <ReactPlayer
             className="absolute top-0 left-0 object-cover"
@@ -66,17 +66,6 @@ const Banner = ({ data = [] }) => {
             onContextMenu={(e: any) => e.preventDefault()}
           />
         </div>
-      ) : (
-        <img
-          className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw] object-cover"
-          src={
-            banner?.poster_path || banner?.backdrop_path
-              ? `${image_base_url}/${
-                  banner?.poster_path || banner?.backdrop_path
-                }`
-              : 'none'
-          }
-        />
       )}
 
       <div className="flex h-[80vh] max-w-xs flex-col justify-center md:max-w-lg lg:max-w-xl xl:max-w-2xl">
