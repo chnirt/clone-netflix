@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { FaPlay } from 'react-icons/fa'
 import { videoUrl } from '../utils/request'
@@ -10,26 +10,33 @@ const Banner = ({ data = [] }) => {
   const [banner, setBanner] = useState<any>(null)
   const [movie, setMovie] = useState<any>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchBanner = () => {
-      setBanner(data[Math.floor(Math.random() * data.length - 1)])
+      const newBanner: any = data[Math.floor(Math.random() * data.length - 1)]
+      setBanner(newBanner)
     }
     fetchBanner()
-  }, [data])
+  }, [])
 
   useEffect(() => {
     const fetchVideo = async (videoId: string) => {
       try {
         const movieResponse = await (await fetch(videoUrl(videoId))).json()
         const movies = movieResponse.results
-        setMovie(movies[Math.floor(Math.random() * movies.length - 1)])
+        setTimeout(() => {
+          setMovie(movies[Math.floor(Math.random() * movies.length - 1)])
+        }, 1000)
       } catch (error) {
+        console.log(error)
       } finally {
       }
     }
-    if (!banner) return
-    fetchVideo(banner.id)
+    if (banner !== null) {
+      fetchVideo(banner.id)
+    }
   }, [banner])
+
+  console.log(movie)
 
   const config = {
     attributes: {
@@ -41,7 +48,7 @@ const Banner = ({ data = [] }) => {
 
   return (
     <div className="banner">
-      {/* {
+      {
         <img
           className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw] object-cover"
           src={
@@ -52,7 +59,7 @@ const Banner = ({ data = [] }) => {
               : 'none'
           }
         />
-      } */}
+      }
       {movie && (
         <div className="absolute left-0 top-0 right-0 -z-10 h-[80vh] w-[100vw]">
           <ReactPlayer
@@ -63,7 +70,7 @@ const Banner = ({ data = [] }) => {
             width="100%"
             height="100%"
             controls={false}
-            onContextMenu={(e: any) => e.preventDefault()}
+            // onContextMenu={(e: any) => e.preventDefault()}
           />
         </div>
       )}
