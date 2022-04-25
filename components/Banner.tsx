@@ -36,8 +36,6 @@ const Banner = ({ data = [] }) => {
     }
   }, [banner])
 
-  console.log(movie)
-
   const config = {
     attributes: {
       disablePictureInPicture: true,
